@@ -1,0 +1,67 @@
+.game-start-over {
+    position: absolute;
+    /*height:400px;
+    width:400px;*/
+    margin-left:auto;
+    margin-right:auto;
+    background: rgba(260, 247, 216, 0.6);
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+.hide {
+    display:none;
+}
+.game-over-text {
+    padding: 15px;
+}
+
+@keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.normal-right-spinner {
+    -webkit-animation: glyphicon-spin-r 2s infinite linear;
+    animation: glyphicon-spin-r 2s infinite linear;
+}
+
+.game-start-over .col {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: black;
+    margin: 5px;
+}
+
+.register-explore {
+    max-width: 400px;
+    width: 100%;
+}
+
+.signin-popup {
+    z-index: 99999;
+    position: fixed;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    opacity: 0.7;
+    height:90%;
+    padding-top: 50px;
+}
+
+.play-container {
+    padding-top: 20px;
+}
+
+.score-display {
+    display:inline;
+    font-size:36px;
+    margin-left:10px;
+}

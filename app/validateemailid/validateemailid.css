@@ -1,0 +1,12 @@
+.font32 {
+    font-size: 32px;
+}
+.displayblock {
+    display:block;
+}
+.validate-board {
+    background-color:white;
+    padding:10px;
+    border-radius: 10px;
+    height:30%;
+}

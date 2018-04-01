@@ -1,0 +1,19 @@
+<div class="validate-board">
+    <div ng-show="bValidating">
+        <span class="glyphicon glyphicon-repeat normal-right-spinner font32"></span>
+        <span class="font32">Validating...</span>
+        <span class="displayblock">It will take few seconds to validate your account.</span>
+    </div>
+
+    <div ng-show="validationSuccess">
+        <h1><strong>Done.<br/></strong></h1>
+        <p><strong>Welcome to <a href="https://snakegames.in">https://snakegames.in</a>. Here comes the simple yet
+            thrilling fun.</strong></p>
+        <p><strong><a href="javascript:void(0);" on-click="goToHome()">Click here</a>&nbsp;to get started.</strong></p>
+    </div>
+    <div ng-show="validationFailed">
+        <h2><strong>Sorry.<br/></strong></h2>
+        <p>We were unable to validate your account. There seems some problem validating your account.</p>
+        <p>For assistance please reach us at <strong>support@snakegames.in</strong>.</p>
+    </div>
+</div>

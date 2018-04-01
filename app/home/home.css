@@ -1,0 +1,43 @@
+
+.carousel {
+    height: 350px;
+}
+.carousel-indicators {
+    position: relative;
+    bottom:-10px;
+    /*overriden styles*/
+    width: 100%;
+    margin-left: 0px;
+    left: 0%;
+}
+.carousel-indicators li {
+    text-indent: 0;
+    margin: 1px;
+    width: 150px;
+    height: 30px;
+    border: none;
+    line-height: 30px;
+    color: #fff;
+    background-color: #999;
+    transition: all 0.25s ease;
+}
+
+.carousel-indicators li.active {
+    margin: 0 2px;
+    width: 150px;
+    height: 30px;
+    background-color: #337ab7;
+}
+.welcome-message {
+    display: inline;
+}
+.welcome-message .greeting {
+    color: #999;
+}
+.welcome-message .logo {
+    color: #337ab7;
+    font-size:36px;
+}
+.signin-form form h5, .register-form form h5, .reset-password-form form h5{
+    padding-left: 5px;
+}

@@ -1,0 +1,43 @@
+<div>
+    <div class="btn-group btn-group-justified">
+        <a type="button" class="btn btn-default your-top-scores" ng-class="{'active':userTop10}">Your top scores</a>
+        <a ng-if="userLoggedIn"  class="btn btn-default top-ten-all-player" ng-class="{'active':!userTop10}">Top 10 scores of all players</a>
+    </div>
+    <table class="table table-striped" ng-show="userTop10">
+        <thead>
+        <tr>
+            <th class="col-xs-1">Score</th>
+            <th class="col-xs-1">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="score in allscores">
+            <td class="col-xs-1">{{score.score}}</td>
+            <td class="col-xs-1" am-time-ago="score.date"></td>
+        </tr>
+        <tr ng-show="allscores && allscores.length==0">
+            <td colspan="2">No records to display.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-striped" ng-if="userLoggedIn" ng-show="!userTop10">
+        <thead>
+        <tr>
+            <th class="col-xs-1">Name</th>
+            <th class="col-xs-1">Score</th>
+            <th class="col-xs-1">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="score in allPlayerScore">
+            <td class="col-xs-1">{{score.displayname}}</td>
+            <td class="col-xs-1">{{score.score.score}}</td>
+            <td class="col-xs-1" am-time-ago="score.score.date"></td>
+        </tr>
+        <tr ng-show="allPlayerScore && allPlayerScore.length==0">
+            <td colspan="3">No records to display.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

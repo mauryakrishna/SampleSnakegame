@@ -1,0 +1,145 @@
+
+<div class="home-container signin-popup">
+
+    <div id="home-carousel" class="carousel" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#home-carousel" data-slide-to="0">Register</li>
+            <li data-target="#home-carousel" data-slide-to="1" class="active">SignIn</li>
+            <li data-target="#home-carousel" data-slide-to="2">Reset Password</li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item">
+                <!--registration section-->
+                <div class="register-form">
+                    <div ng-show="register.bSuccessful" class="registrationSuccess">
+                        <span>Registration Successful. An email has been sent to your registered email id. Please validate your account to start playing snake games.</span>
+                        <br/>
+                        <a ng-click="registerAnotherUser()">Register another user.</a>
+                    </div>
+                    <div ng-show="register.bUserExists" class="registrationFailed">
+                        <span class="help-inline">The email id is already in use.</span>
+                    </div>
+                    <form ng-show="!register.bSuccessful" name="registerform" ng-submit="registerUser()" novalidate>
+                        <h5>Please enter your credential to register. All fields are mandatory.</h5>
+                        <div class="form-group" >
+                            <div class="controls">
+                                <input name-validation type="text" class="form-control" name="displayname" ng-model="register.displayname" placeholder="Display name"  required>
+                                <span ng-show='registerform.displayname.$error.length' ng-class="{'help-inline':'registerform.displayname.$error.length'}">
+                                    Please provide valid display name.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <input email-validation type="email" class="form-control" ng-model="register.emailid" name="emailid" placeholder="Email" required>
+                                <span ng-show='registerform.emailid.$error.valid' ng-class="{'help-inline':'registerform.emailid.$error.valid'}">
+                                    Please verify email id.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <input password-validation type="password" class="form-control" name="password" ng-model="register.password" placeholder="Password" required>
+                                <span ng-show='registerform.password.$error.valid' ng-class="{'help-inline':'registerform.password.$error.valid'}">
+                                    Password should be minimum 6 characters.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <input password-validation type="password" class="form-control" name="confirmpassword"
+                                       compare-to="register.password" ng-model="register.confirmpassword" placeholder="Confirm password" required>
+                                <span ng-show='registerform.confirmpassword.$error.valid' ng-class="{'help-inline':'registerform.confirmpassword.$error.valid'}">
+                                        Password should be minimum 6 characters.
+                                </span>
+                                <span ng-show='registerform.confirmpassword.$error.valueMismatch' ng-class="{'help-inline':'registerform.confirmpassword.$error.valueMismatch'}">
+                                        Kindly verify the password.
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" ng-disabled="!registerform.$valid || bRegistering">
+                            <span ng-show="bRegistering" class="glyphicon glyphicon-repeat normal-right-spinner"></span>
+                            Register
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="item active">
+                <!--login section-->
+                <div class="signin-form">
+                    <div ng-show="login.bFailed" class="loginFailed">
+                        <span class="help-inline">Email or password is incorrect.</span>
+                    </div>
+                    <form name="loginform" ng-submit="signInUser()" novalidate>
+                        <h5>Please enter your credential to proceed.</h5>
+
+                        <div class="form-group">
+                            <input email-validation type="email" name="emailid" class="form-control" ng-model="login.emailid" placeholder="Email" required>
+                            <span ng-show='loginform.emailid.$error.valid' ng-class="{'help-inline':'loginform.emailid.$error.valid'}">
+                                    Please provide valid email id.
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <input password-validation type="password" name="password" class="form-control" ng-model="login.password" placeholder="Password" required>
+                            <span ng-show='loginform.password.$error.valid' ng-class="{'help-inline':'loginform.password.$error.valid'}">
+                                    Carefully enter the password.
+                            </span>
+                        </div>
+                        <!--<div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="login.remember"> Remember me
+                            </label>
+                        </div> -->
+                        <button type="submit" class="btn btn-primary" ng-disabled="!loginform.$valid || bLogging">
+                            <span ng-show="bLogging" class="glyphicon glyphicon-repeat normal-right-spinner"></span>
+                            login
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="item">
+                <!--forgot password section-->
+                <div class="reset-password-form">
+                    <div ng-show="resetpassword.bSuccessful" class="resetpasswordSuccess">
+                        <span>An email has been sent to your registered email id. Please use the default password included to reset to new password.</span>
+                        <br/>
+                        <br/>
+                        <span>If you still did not receive an email, request it again by clicking the button below.</span>
+                        <br/>
+                        <button class="btn btn-primary" ng-click="resetPassword()">Resend password.</button>
+                    </div>
+
+                    <div ng-show="resetpassword.bFailed" class="resetpasswordfailed">
+                        <span class="help-inline">No account found with given email id. Please check the spelling.</span>
+                    </div>
+                    <form ng-show="!resetpassword.bSuccessful" name="resetpasswordform" ng-submit="resetPassword()" novalidate>
+                        <h5>Please enter registered email id to receive default password</h5>
+
+                        <div class="form-group" >
+                            <input email-validation type="text" name="emailid" class="form-control" ng-model="resetpassword.emailid" placeholder="Registered Email" required>
+                            <span ng-show='resetpasswordform.emailid.$error.valid' ng-class="{'help-inline':'resetpasswordform.emailid.$error.valid'}">
+                                    Please provide valid email id.
+                            </span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" ng-disabled="!resetpasswordform.$valid || bReseting">
+                            <span ng-show="bReseting" class="glyphicon glyphicon-repeat normal-right-spinner"></span>
+                            Reset
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;">
+            <a href="javascript:void(0);" ng-click="closeSignIn()" >May be later</a>
+        </div>
+    </div>
+</div>

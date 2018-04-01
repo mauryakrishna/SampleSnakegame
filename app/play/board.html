@@ -1,0 +1,99 @@
+<div ui-view="signin"></div>
+
+<div class="navbar navbar-default  navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <div class="welcome-message">
+                <span class="greeting">Welcome to </span>
+                <span class="logo">Snakegames.in</span>
+            </div>
+            <div class="score-display">
+                <span class="h1">{{score}}</span>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse" >
+            <ul class="nav navbar-nav navbar-right" ng-if="userLoggedIn">
+                <!--<li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">See scores<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Top 10 scores</a></li>
+                        <li><a href="#">Your scores</a></li>
+                    </ul>
+                </li>-->
+                <li><a ui-sref=".scores" href="javascript:void(0);">Scores</a></li>
+                <li><a ui-sref=".changePassword" href="javascript:void(0);">Change password</a></li><!--ng-click="changePassword()"-->
+                <li>
+                    <a href="javascript:void(0);" ng-click="logout()">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                    Logout
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-if="!userLoggedIn">
+                <li><a ui-sref=".signin" href="javascript:void(0);">SignIn</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container play-container">
+    <div class="row">
+        <!--play area-->
+
+        <div class="col col-lg-6 col-md-6 col-sm-7 canvasContainer">
+            <div class="game-start-over" >
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-sm-6 col-md-5 col-lg-4">
+                            <div ng-show="bCollision && !bScoreSaved" class="alert alert-danger " role="alert">
+                                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                Game Over! You bite yourself.
+                            </div>
+                            <div ng-if="userLoggedIn">
+                                <div class="alert alert-success" ng-show="bScoreSaved" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    Score saved successfully.
+                                </div>
+
+                                <div class="alert alert-danger" ng-show="bErrorSavingScore" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    Error saving the score. Try again.
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-lg-4 col-sm-6 col-md-5 text-center">
+                            <div class="btn btn-default" ng-class="{'disabled': bSavingInProgress}" ng-click="play()">
+                                <span>Start playing</span><!--<span ng-show="bScoreSaved"> again</span>-->
+                            </div>
+                            <div ng-if="userLoggedIn" ng-show="bCollision && !bScoreSaved" class="btn btn-default" ng-click="saveScore()">
+                                <span ng-show="bSavingInProgress" class="glyphicon glyphicon-repeat normal-right-spinner"></span>
+                                Save score
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--height="400px" width="400px"-->
+            <canvas ng-dblclick="togglePause()" style="border:1px solid #000;">
+                Your browser does not support HTML5.
+            </canvas>
+        </div>
+
+        <!--score view below-->
+        <div class="col col-lg-6 col-md-6 col-sm-5 ">
+            <div ui-view></div>
+        </div>
+    </div>
+</div>
